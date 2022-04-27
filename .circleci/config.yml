@@ -1,31 +1,14 @@
 version: 2.1
 
 orbs:
-  win: circleci/windows@2.3.0
+  win: circleci/windows@4.1
 
 jobs:
   build:
-    executor:
-      name: win/default
-      size: "medium" # can be "medium", "large", "xlarge", "2xlarge"
+    executor: win/server-2022
     steps:
       - run: Write-Host 'Hello, Windows'
-      - run:
-          working_directory: ~/
-          name: Run tests
-          command: |
-            pwd
-
-jobs:
-  build-windows:
-    machine:
-      image: windows-server-2019:stable
-      resource_class: windows.medium
-      shell: powershell.exe -ExecutionPolicy Bypass
-    steps:
-      - checkout
-      - run:
-          working_directory: ~/
-          name: Run tests
-          command: |
-            pwd
+workflows:
+  my-workflow:
+    jobs:
+      - build
