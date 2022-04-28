@@ -10,7 +10,10 @@ jobs:
       - checkout
       - run: pwd
       - run: Write-Host 'Hello, Windows'
-      - run: ./exec.ps1
+      - run: 
+          name: Windows Capability Test
+          no_output_timeout: 30m
+          command: exec.ps1
       - run: 
           working_directory: ~/
           name: Run tests
