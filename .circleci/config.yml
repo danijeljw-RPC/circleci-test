@@ -9,12 +9,12 @@ jobs:
     steps:
       - checkout
       - run: Write-Host 'Hello, Windows'
+      - run: ./exec.ps1
       - run: 
           working_directory: ~/
           name: Run tests
           command: |
             pwd
-            ./exec.ps1
 workflows:
   my-workflow:
     jobs:
